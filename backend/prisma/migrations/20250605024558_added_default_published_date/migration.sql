@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Blog" ALTER COLUMN "publishedDate" SET DEFAULT CURRENT_TIMESTAMP;
