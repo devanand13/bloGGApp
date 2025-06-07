@@ -1,6 +1,6 @@
-import { useState, type ChangeEvent, type ChangeEventHandler } from "react"
+import { useState, type ChangeEvent } from "react"
 import {Link} from "react-router-dom"
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
 import { BACKEND_URL } from "../config";
 import {useNavigate} from "react-router-dom"
 
