@@ -4,6 +4,7 @@ import { Signin } from './pages/Signin'
 import { Blog } from './pages/Blog'
 import { Blogs } from './pages/Blogs'
 import { Publish } from './pages/Publish'
+import { ProtectedRoute } from './utils/ProtectedRoutes'
 
 function App() {
 
@@ -14,8 +15,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/blog" element={<Blogs />} />
-          <Route path="/publish" element={<Publish/>} />
+          <Route path="/" element={<ProtectedRoute> <Blogs /> </ProtectedRoute> } />
+          <Route path="/publish" element={<ProtectedRoute>  <Publish/>  </ProtectedRoute>  } />
         </Routes>
       </BrowserRouter>
     </>

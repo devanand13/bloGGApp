@@ -1,11 +1,16 @@
 import { Avatar } from "./Avatar"
 import {Link } from "react-router-dom";
+import { UserMenu } from "./UserMenu";
+import { useState } from "react";
 
 export function AppBar(){
+    const [open,setOpen] = useState(false)
+    const toggleMenu = () => setOpen(!open)
+    
     return <div className="border-b justify-between flex px-10 py-4 ">
-        <Link to="/blog">
-            <div className="text-2xl cursor-pointer">
-                Medium
+        <Link to="/">
+            <div className=" pl-5 pt-1 text-4xl cursor-pointer font-extrabold text-slate-400">
+                bloGG
             </div>
         </Link>
         <div className="flex">
@@ -15,7 +20,12 @@ export function AppBar(){
                 </Link>
                 
             </div>
-            <Avatar size= {"big"} name={"A"}></Avatar>
+            <div className="cursor-pointer" onClick={toggleMenu}>
+                <Avatar size= {"big"} name={"A"} ></Avatar>
+            </div>
         </div>
+        {
+            open && <UserMenu/>
+        }
     </div>
 }

@@ -14,7 +14,7 @@ export const Auth = ({type} : {type : "signup" | "signin"})=>{
     })
 
     async function sendRequest(){
-        console.log(postInputs)
+        
         try{
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type=="signin" ? "signin":"signup"}`, postInputs,{
                 headers:{
@@ -23,7 +23,7 @@ export const Auth = ({type} : {type : "signup" | "signin"})=>{
             })
             const jwt = await response.data;
             localStorage.setItem("token", jwt)
-            navigate("/blog")
+            navigate("/")
         }catch(e){
             //  Alert user that error happened
         }
@@ -37,8 +37,8 @@ export const Auth = ({type} : {type : "signup" | "signin"})=>{
                     { type == "signin" ? "Welcome back!" : "Create an account"}
                 </div>
                 <div className="text-slate-400 pt-3">
-                    {type == "signin" ? "Dont have An Account?" : "Already have an account?"}  
-                    <Link to={type == "signin" ? "/signup" : "/signin"} className="pl-2 underline">{type=="signin" ? "Signup" : "SignIn"}</Link>
+                    {type == "signin" ? "Don't have An Account?" : "Already have an account?"}  
+                    <Link to={type == "signin" ? "/signup" : "/signin"} className="pl-2 underline">{type=="signin" ? "Signup" : "SignIn"}</Link> 
                 </div>
             </div>
             <div className="pt-4 w-md">
@@ -87,7 +87,7 @@ export const Auth = ({type} : {type : "signup" | "signin"})=>{
                     }}/>
                 </div>
                 <div className="pt-5">
-                <button className="bg-neutral-900 hover:bg-blue-700 text-white w-full font-bold py-2 px-4 rounded" onClick={async function(){ await sendRequest() }}>
+                <button className="bg-neutral-900 hover:bg-slate-700 text-white w-full font-bold py-2 px-4 rounded cursor-pointer" onClick={async function(){ await sendRequest() }}>
                     {type=="signin" ? "Sign in" : "Sign up "}
                 </button>
                 </div>
