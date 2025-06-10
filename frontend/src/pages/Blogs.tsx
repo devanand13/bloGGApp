@@ -51,7 +51,7 @@ export function Blogs(){
                                 content={blog.content}
                                 publishedDate={convertDateString(blog.publishedDate)}
                                 title={blog.title}
-                                onClick = {(e)=>{removeBlog(blog.id)}}
+                                onClick = {()=>{removeBlog(blog.id)}}
                             />
                         })
                     }
