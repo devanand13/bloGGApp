@@ -27,7 +27,7 @@ export function Blogs(){
     return <div className="">
                 <AppBar></AppBar>
                 <div className="flex justify-center">
-                <div className="max-w-2xl">
+                <div className="max-w-2xl pt-5">
                     {
                         blogs.map((blog, index) => {
                             return <BlogCard 

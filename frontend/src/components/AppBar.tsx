@@ -7,7 +7,7 @@ export function AppBar(){
     const [open,setOpen] = useState(false)
     const toggleMenu = () => setOpen(!open)
     
-    return <div className="border-b justify-between flex px-10 py-4 ">
+    return <div className="border-b justify-between flex px-10 py-4 outline-double outline-dotted">
         <Link to="/">
             <div className=" pl-5 pt-1 text-4xl cursor-pointer font-extrabold text-slate-400">
                 bloGG
