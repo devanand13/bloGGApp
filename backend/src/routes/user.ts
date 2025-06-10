@@ -15,14 +15,12 @@ export const userRouter = new Hono<{
 
     userRouter.post('/signup',async (c)=>{
         const body = await c.req.json()
-        console.log(body)
-    
+
         const prisma = new PrismaClient({
             datasourceUrl: c.env.DATABASE_URL
         }).$extends(withAccelerate());
 
         const hash = bcrypt.hashSync(body.password.toString(),10);
-        console.log(hash)
 
     
         try{
@@ -34,8 +32,7 @@ export const userRouter = new Hono<{
                   email:body.email.toString()
                 }
             })
-            console.log("From Signup")
-            console.log(user)
+
         
             const jwt = await sign(user, c.env.JWT_SECRET)
             
@@ -45,7 +42,6 @@ export const userRouter = new Hono<{
             })
     
         }catch(e){
-            console.log(e)
             c.status(411)
             return c.text("Invalid ")
         }

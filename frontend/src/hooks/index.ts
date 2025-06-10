@@ -31,7 +31,6 @@ export const useBlog = ({id}:{id:string  })=>{
              setBlog(res.data);
              setLoading(false)
         })
-        console.log(request)
     },[id])
     return {
         loading,
@@ -52,10 +51,10 @@ export const useBlogs =  () => {
              setBlogs(res.data);
              setLoading(false)
         })
-        console.log(request)
     },[])
     return {
         loading,
-        blogs
+        blogs,
+        setBlogs
     }
 }

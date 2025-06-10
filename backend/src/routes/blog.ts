@@ -22,7 +22,7 @@ blogRouter.use('/*', async (c, next)=>{
     
     try{
         const user = await verify(authHeader, c.env.JWT_SECRET);
-        console.log(user)
+
         if(user){
             c.set("userid", user.id)
             await next()
@@ -43,9 +43,7 @@ blogRouter.use('/*', async (c, next)=>{
 
 blogRouter.post('/', async (c) => {
     const body = await c.req.json();
-    console.log(body)
     const token = await c.req.header("Authorization")
-    console.log(c.get("userid"))
 
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
@@ -61,11 +59,10 @@ blogRouter.post('/', async (c) => {
                 content:body.content.toString()
             }
         })    
-        console.log(blog)
 
         return c.body(JSON.stringify(blog), 200)
     }catch(e){
-        console.log(e)
+
         return c.body("Something went wrong!",404)
     }
 })
@@ -89,7 +86,7 @@ blogRouter.put('/', async (c) => {
                 content:body.content.toString()
             }
         })    
-        console.log(blog)
+
 
         return c.body(JSON.stringify(blog), 200)
     }catch(e){
@@ -117,7 +114,7 @@ blogRouter.get('/bulk', async (c) => {
 
 blogRouter.get('/:id', async (c) => {
     const blogId = await c.req.param("id")
-    console.log(blogId)
+
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
@@ -135,6 +132,26 @@ blogRouter.get('/:id', async (c) => {
         return c.body(JSON.stringify(blog), 200)
     }catch(e){
         return c.body("Something went wrong!",404)
+    }
+})
+
+blogRouter.delete('/:id', async (c)=>{
+    const blogId = await c.req.param("id");
+
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate());
+
+    try{
+        await prisma.blog.delete({
+            where:{
+                id:Number(blogId)
+            }
+        })
+
+        return c.body("Blog Deleted!", 200)
+    }catch(e){
+        return c.body(`Unable to delete blog ${blogId}`,403)
     }
 })
    

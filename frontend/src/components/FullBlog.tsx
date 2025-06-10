@@ -13,13 +13,13 @@ export const FullBlog = ({blogProps}:{blogProps:Blog | undefined}) => {
     return <div className="flex justify-center">
             <div className="md:grid grid-cols-12 pt-20 px-20 ">
             <div className="md:col-span-8 col-span-12">
-                <div className="text-4xl font-extrabold">
+                <div className="text-4xl font-extrabold break-words">
                     {blogProps.title}
                 </div>
                 <div className="text-slate-500 font-thin pt-2">
                     {`Posted on ${convertDateString(blogProps.publishedDate)}`}
                 </div>
-                <div className="pt-8">
+                <div className="pt-8 break-words">
                     {blogProps.content} 
                 </div>
             </div>
